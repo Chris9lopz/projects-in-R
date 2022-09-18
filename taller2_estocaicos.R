@@ -5,26 +5,28 @@ usuarios <- c(7,8,12,14,16,8,7,14,12,15,18,17,18,12,7,8,14,16,12,12,12,13,14,15,
 
 # Intepretación
 
-# Se identifica el total de usuarios que tiene el arreglo
+# Total de usuarios
 total_usuarios <- length(usuarios) # 32 
 
 # Se almacena los valores unicos para recorrer valores únicos
-valor_unico <- c(unique(usuarios))
+horarios <- c(unique(usuarios))
 
 # Ordenar el arreglo
-valor_unico <- sort(valor_unico,decreasing = FALSE)
+horarios <- sort(horarios,decreasing = FALSE)
 
 #Crear arreglo vacio
-contar_usuarios <- list()
+contar_usuarios <- c()
 
 # Se recorre los valores únicos
-for(i in valor_unico){
-  contar_usuarios <- length(usuarios[usuarios==i])
+for(i in horarios){
+  # Llenar arreglo 
+  contar_usuarios <- append(contar_usuarios,length(usuarios[usuarios==i]))
 }
+# Agregar matrix los valores a una matrix
+matrix <- cbind(horarios,contar_usuarios)
 
-valor_unico[5]
-contar_usuarios[]
- 
+# Creamos tabla de los datos
+dataf <- data.frame(matrix)
 
-# formula
-#length(usuarios[usuarios==7])
+view(dataf)
+
