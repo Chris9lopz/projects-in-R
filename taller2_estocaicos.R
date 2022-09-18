@@ -1,3 +1,7 @@
+# Insercción de librerias
+library(dplyr)
+library(ggplot2)
+
 # En un parque de diversiones, el dueño registra la hora de ingreso
 # de los usuarios del parque y la información obtenida es:
 
@@ -22,11 +26,13 @@ for(i in horarios){
   # Llenar arreglo 
   contar_usuarios <- append(contar_usuarios,length(usuarios[usuarios==i]))
 }
+# Convertir variable horarios a caracter con concat de hr
+horarios <- paste(as.character(horarios), "hrs")
+
 # Agregar matrix los valores a una matrix
 matrix <- cbind(horarios,contar_usuarios)
 
 # Creamos tabla de los datos
 dataf <- data.frame(matrix)
 
-view(dataf)
 
