@@ -7,8 +7,6 @@ library(ggplot2)
 
 usuarios <- c(7,8,12,14,16,8,7,14,12,15,18,17,18,12,7,8,14,16,12,12,12,13,14,15,14,9,10,17,9,12,14,15)
 
-# Intepretación
-
 # Total de usuarios
 total_usuarios <- length(usuarios) # 32 
 
@@ -56,18 +54,18 @@ for(horario in dataf$horarios){
     contar <- contar + 1
   }
   
-  # COndicionar los horarios de franja 16 a 18 hrs
+  # Condicionar los horarios de franja 16 a 18 hrs
   if(horario == "16 hrs" || horario == "17 hrs" || horario == "18 hrs"){
     suma_c <- suma_c + as.numeric(dataf$contar_usuarios[contar])
     contar <- contar + 1
   }
 }
-# Creacion de variables con calculo de tarifa para plan A
+# Creación de variables con calculo de tarifa para plan A
 plan_a_hor1 <- suma_a * 20000
 plan_a_hor2 <- suma_b * 30000
 plan_a_hor3 <- suma_c * 10000
 
-# Creacion de variables con calculo de tarifa para plan B
+# Creación de variables con calculo de tarifa para plan B
 plan_b_hor1 <- suma_a * 20000
 plan_b_hor2 <- suma_b * 15000
 plan_b_hor3 <- suma_c * 20000
@@ -83,4 +81,29 @@ if(total_plan_a > total_plan_b){
   print(paste("El plan que ganaría más dinero sería el plan B con un total de", total_plan_b))
 }
 
+# Interpretación
+
+# EL numero mayor de ingreso de usuarios fue a las 12 hrs
+
+# Grafica de barra
+bar_total <- plot_ly(dataf,x=horarios,y=contar_usuarios, 
+        name = "Total usuarios por horario",
+        type = "bar",
+        text = contar_usuarios,
+        textposition = "auto",
+        marker = list(color = 'rgb(158,202,225)',
+                      line = list(color = 'rgb(8,48,107)', width = 1.5)))%>%
+  layout(title = "Total de usuarios por horario", 
+         xaxis = list(title = "Horarios"),
+         yaxis = list(title = "Cantidad usuarios"))
+bar_total
+
+# El ingreso promedio fue de 2.9091
+average <- mean(contar_usuarios)
+
+# El ingreso max por horario fue de 7
+max_user <- max(contar_usuarios)
+
+# EL ingreso min por horario fue de 1
+min_user <- min(contar_usuarios)
 
